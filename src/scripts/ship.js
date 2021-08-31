@@ -1,8 +1,8 @@
 class Ship {
   constructor(length, hitPos, sunk) {
     this.length = length;
-    this.hitPos = hitPos;
-    this.sunk = sunk;
+    this.hitPos = hitPos ?? new Array(length).fill(null);
+    this.sunk = sunk ?? false;
   }
 
   hit(pos) {

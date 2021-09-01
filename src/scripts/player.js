@@ -4,8 +4,8 @@ function chooseRandom(array) {
   return array[Math.round(Math.random() * array.length)];
 }
 
-function getAvailablePositions() {
-  const { board } = new GameBoard();
+function getAvailablePositions(player) {
+  const { board } = player.board;
   const availablePositions = [];
   for (let row = 0; row < board.length; row += 1) {
     for (let col = 0; col < row.length; col += 1) {
@@ -22,12 +22,14 @@ class Player {
   constructor(name) {
     this.name = name;
     this.attacks = [];
+    this.board = new GameBoard();
   }
 
   attackRandom() {
-    const availablePositions = getAvailablePositions();
+    const availablePositions = getAvailablePositions(this);
     const chosenPosition = chooseRandom(availablePositions);
     this.attacks.push(chosenPosition);
+    return chosenPosition;
   }
 }
 

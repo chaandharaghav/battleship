@@ -13,6 +13,8 @@ class GameBoard {
     const shipObj = {};
     shipObj.id = this.ships.length + 1;
     shipObj.ship = newShip;
+    shipObj.position = position;
+    shipObj.direction = direction;
 
     this.ships.push(shipObj);
 
@@ -34,14 +36,38 @@ class GameBoard {
     }
   }
 
-  receiveAttack(position) {
-    const row = position[0];
-    const col = position[1];
+  receiveAttack(hitPosition) {
+    const row = hitPosition[0];
+    const col = hitPosition[1];
 
     if (this.board[row][col] !== 0) {
-      return this.ships.find((ship) => ship.id === this.board[row][col]).ship;
+      return this.registerAttack(hitPosition, row, col);
     }
-    return this.missedShots.push(position);
+    // if ship is not hit, add to missed shots
+    return this.missedShots.push(hitPosition);
+  }
+
+  registerAttack(hitPosition, row, col) {
+    const shipObject = this.ships.find(
+      (shipObj) => shipObj.id === this.board[row][col],
+    );
+    const { direction, position } = shipObject;
+
+    if (direction === 'column') {
+      shipObject.ship.hit(hitPosition[0] - position[0] + 1);
+    } else {
+      shipObject.ship.hit(hitPosition[1] - position[1] + 1);
+    }
+
+    // checking if the skip is sunk
+    if (shipObject.ship.isSunk()) {
+      shipObject.ship.sunk = true;
+    }
+
+    // x marks the positions hit
+    this.board[row][col] = 'x';
+
+    return shipObject.ship;
   }
 
   allShipsSunk() {

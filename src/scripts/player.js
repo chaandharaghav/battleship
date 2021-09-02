@@ -23,6 +23,7 @@ class Player {
     this.name = name;
     this.attacks = [];
     this.board = new GameBoard();
+    this.isThierTurn = false;
   }
 
   attackRandom() {

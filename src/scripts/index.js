@@ -1,7 +1,7 @@
 // importing scripts
-import playGame from './game';
+import startGame from './game';
 
 // importing styles
 import '../styles/index.css';
 
-playGame();
+startGame();

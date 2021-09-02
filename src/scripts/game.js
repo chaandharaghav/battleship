@@ -1,27 +1,54 @@
+import { addBoardEvents, removeCurrentBoard } from './gameControls';
 import buildBoard from './loadboard';
 import Player from './player';
 
-function makeNextMove(currentPlayer) {
-  buildBoard(currentPlayer);
-}
+const players = [];
 
-function playGame() {
-  const player = new Player('Adam');
-  const computer = new Player('Computer');
+function initializePlayers(p1Name, p2Name) {
+  const player = new Player(p1Name);
+  const computer = new Player(p2Name);
 
   player.board.addShip(3, [0, 0], 'column');
   player.board.addShip(4, [3, 3], 'row');
   player.board.receiveAttack([3, 2]);
-  computer.board.addShip(3, [0, 0], 'column');
+  player.isTheirTurn = true;
 
-  let turn = 'player';
-  if (turn === 'player') {
-    makeNextMove(player);
-    turn = 'computer';
+  computer.board.addShip(3, [0, 0], 'column');
+  computer.board.receiveAttack([0, 0]);
+
+  players.push(player, computer);
+}
+
+function findCurrentPlayer() {
+  return players.find((player) => player.isTheirTurn === true);
+}
+
+function changeActivePlayer() {
+  removeCurrentBoard();
+
+  const currentPlayerIndex = players.indexOf(
+    players.find((player) => player.isTheirTurn === true),
+  );
+
+  if (currentPlayerIndex === 0) {
+    buildBoard(players[1]);
+    players[1].isTheirTurn = true;
+    players[0].isTheirTurn = false;
   } else {
-    makeNextMove(computer);
-    turn = 'player';
+    buildBoard(players[0]);
+    players[0].isTheirTurn = true;
+    players[1].isTheirTurn = false;
   }
 }
 
-export default playGame;
+function startGame(p1Name, p2Name) {
+  initializePlayers('Adam', 'Computer');
+
+  buildBoard(findCurrentPlayer());
+  addBoardEvents();
+
+  changeActivePlayer();
+  changeActivePlayer();
+}
+
+export default startGame;

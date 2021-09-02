@@ -44,6 +44,7 @@ class GameBoard {
       return this.registerAttack(hitPosition, row, col);
     }
     // if ship is not hit, add to missed shots
+    this.board[row][col] = -1;
     return this.missedShots.push(hitPosition);
   }
 

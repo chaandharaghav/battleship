@@ -12,21 +12,14 @@ function setInnerText(cell, player, row, col) {
       cell.innerText = 'x';
       cell.classList.add('hit');
       break;
-    default:
-      cell.innerText = '-';
+    case -1:
+      cell.innerText = 'x';
       cell.classList.add('missed');
       break;
-  }
-
-  // if missedShots are present, render them
-  if (player.board.missedShots.length !== 0) {
-    if (
-      player.board.missedShots[0][0] === row &&
-      player.board.missedShots[0][1] === col
-    ) {
-      cell.innerText = '.';
-      cell.classList.add('shot');
-    }
+    default:
+      cell.innerText = '-';
+      cell.classList.add('notShot');
+      break;
   }
 }
 function buildBoard(player) {

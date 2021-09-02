@@ -1,4 +1,3 @@
-import { addBoardEvents, removeCurrentBoard } from './gameControls';
 import buildBoard from './loadboard';
 import Player from './player';
 
@@ -24,8 +23,6 @@ function findCurrentPlayer() {
 }
 
 function changeActivePlayer() {
-  removeCurrentBoard();
-
   const currentPlayerIndex = players.indexOf(
     players.find((player) => player.isTheirTurn === true),
   );
@@ -42,13 +39,23 @@ function changeActivePlayer() {
 }
 
 function startGame(p1Name, p2Name) {
-  initializePlayers('Adam', 'Computer');
+  initializePlayers(p1Name, p2Name);
 
   buildBoard(findCurrentPlayer());
-  addBoardEvents();
-
-  changeActivePlayer();
-  changeActivePlayer();
 }
 
-export default startGame;
+function updateBoard() {
+  const playArea = document.querySelector('#playArea');
+  playArea.innerHTML = '';
+
+  buildBoard(findCurrentPlayer());
+}
+
+function attack(position) {
+  const player = findCurrentPlayer();
+  player.board.receiveAttack(position);
+
+  updateBoard();
+}
+
+export { startGame, findCurrentPlayer, changeActivePlayer, attack };

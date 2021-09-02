@@ -1,7 +1,9 @@
 // importing scripts
-import startGame from './game';
+import { startGame } from './game';
+import { addBoardEvents } from './gameEvents';
 
 // importing styles
 import '../styles/index.css';
 
-startGame();
+startGame('Adam', 'Computer');
+addBoardEvents();

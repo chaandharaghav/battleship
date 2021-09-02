@@ -1,3 +1,8 @@
+:root {
+  --red: rgb(247, 130, 130);
+  --light-red: rgb(133, 223, 245);
+}
+
 .board {
   max-width: 300px;
 
@@ -9,10 +14,15 @@
 }
 
 .board > * {
+  min-width: 30px;
   min-height: 30px;
 
   background-color: rgb(179, 167, 167);
   border: 1px solid black;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .cell:hover {
@@ -20,9 +30,20 @@
 }
 
 .missed {
-  background-color: hotpink;
+  background-color: var(--light-red);
 }
 
 .hit {
-  background-color: red;
+  background-color: var(--red);
+}
+
+@media (min-width: 767px) {
+  .board {
+    max-width: 500px;
+  }
+
+  .board > * {
+    min-width: 45px;
+    min-height: 45px;
+  }
 }

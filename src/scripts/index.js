@@ -1,9 +1,15 @@
 // importing scripts
-import { startGame } from './game';
-import { addBoardEvents } from './gameEvents';
+// import { startGame } from './game';
+// import { addBoardEvents } from './gameEvents';
 
 // importing styles
 import '../styles/index.css';
+import addFormControls from './namesFormControls';
 
-startGame('Adam', 'Computer');
-addBoardEvents();
+import takeName from './playerNames';
+
+// startGame('Adam', 'Computer');
+// addBoardEvents();
+
+takeName();
+addFormControls();

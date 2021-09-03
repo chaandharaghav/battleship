@@ -57,7 +57,12 @@ h1 {
   background-color: rgb(65, 65, 65);
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 1023px) {
+  h1 {
+    font-size: 6rem;
+
+    margin-top: 3rem;
+  }
   #restartBtn:hover {
     background-color: rgb(65, 65, 65);
   }

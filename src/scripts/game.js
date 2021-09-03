@@ -56,6 +56,10 @@ function attack(position) {
   player.board.receiveAttack(position);
 
   updateBoard();
+
+  if (player.board.allShipsSunk()) {
+    console.log(`${player.name} wins`);
+  }
 }
 
 export { startGame, findCurrentPlayer, changeActivePlayer, attack };

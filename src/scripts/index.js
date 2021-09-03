@@ -8,8 +8,5 @@ import addFormControls from './namesFormControls';
 
 import takeName from './playerNames';
 
-// startGame('Adam', 'Computer');
-// addBoardEvents();
-
 takeName();
 addFormControls();

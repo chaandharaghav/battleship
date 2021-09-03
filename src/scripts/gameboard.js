@@ -40,18 +40,22 @@ class GameBoard {
     const row = hitPosition[0];
     const col = hitPosition[1];
 
-    if (this.board[row][col] !== 0) {
-      return this.registerAttack(hitPosition, row, col);
+    if (this.board[row][col] === 0) {
+      // if ship is not hit, add to missed shots
+      this.board[row][col] = -1;
+      return this.missedShots.push(hitPosition);
     }
-    // if ship is not hit, add to missed shots
-    this.board[row][col] = -1;
-    return this.missedShots.push(hitPosition);
+    if (this.board[row][col] === -1 || this.board[row][col] === 'x') {
+      return 'alreadyHit';
+    }
+    return this.registerAttack(hitPosition, row, col);
   }
 
   registerAttack(hitPosition, row, col) {
     const shipObject = this.ships.find(
       (shipObj) => shipObj.id === this.board[row][col],
     );
+
     const { direction, position } = shipObject;
 
     if (direction === 'column') {

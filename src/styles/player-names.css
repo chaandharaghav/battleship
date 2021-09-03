@@ -26,6 +26,10 @@
   border: 1px solid azure;
 }
 
+#submitBtn:active {
+  background-color: rgb(41, 41, 41);
+}
+
 @media (min-width: 767px) {
   #form-section {
     padding: 5rem;
@@ -37,5 +41,9 @@
     margin-top: 3rem;
     padding: 6rem 12rem;
     padding-bottom: 4rem;
+  }
+
+  #submitBtn:hover {
+    background-color: rgb(41, 41, 41);
   }
 }

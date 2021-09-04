@@ -1,4 +1,10 @@
-import { attack } from './game';
+import announce from './announce';
+import { attack, changeActivePlayer, findCurrentPlayer } from './game';
+import buildBoard from './loadboard';
+
+function removeCurrentBoard() {
+  document.querySelector('#playArea').innerHTML = '';
+}
 
 function addBoardEvents() {
   const body = document.querySelector('body');
@@ -12,12 +18,15 @@ function addBoardEvents() {
         parseInt(e.target.dataset.row, 10),
         parseInt(e.target.dataset.col, 10),
       ]);
+      changeActivePlayer();
+
+      setTimeout(() => {
+        announce(`${findCurrentPlayer().name}'s turn`);
+        removeCurrentBoard();
+        buildBoard(findCurrentPlayer());
+      }, 800);
     }
   });
-}
-
-function removeCurrentBoard() {
-  document.querySelector('#playArea').innerHTML = '';
 }
 
 export { addBoardEvents, removeCurrentBoard };

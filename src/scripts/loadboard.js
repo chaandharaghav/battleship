@@ -22,6 +22,7 @@ function setInnerText(cell, player, row, col) {
       break;
   }
 }
+
 function buildBoard(player) {
   const boardDiv = document.createElement('div');
   boardDiv.classList.add('board');

@@ -1,9 +1,11 @@
 // importing scripts
 import { startGame } from './game';
+import addShipsEvents from './addShipsEvents';
+import announce from './announce';
 
 // importing styles
 import '../styles/player-names.css';
-import { addBoardEvents, removeCurrentBoard } from './gameEvents';
+import { removeCurrentBoard } from './gameEvents';
 
 function addFormControls() {
   const form = document.querySelector('#name-form');
@@ -12,7 +14,8 @@ function addFormControls() {
 
     removeCurrentBoard();
     startGame(e.target[0].value, e.target[1].value);
-    addBoardEvents();
+    announce(`${e.target[0].value} place your ships`);
+    addShipsEvents();
   });
 }
 

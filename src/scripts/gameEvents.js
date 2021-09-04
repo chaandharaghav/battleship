@@ -1,3 +1,4 @@
+/* eslint-disable operator-linebreak */
 import announce from './announce';
 import { attack, changeActivePlayer, findCurrentPlayer } from './game';
 import buildBoard from './loadboard';

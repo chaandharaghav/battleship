@@ -1,3 +1,4 @@
+/* eslint-disable operator-linebreak */
 import buildShipBoard from './addShips';
 import { addBoardEvents, removeCurrentBoard } from './gameEvents';
 import {
@@ -33,9 +34,11 @@ function addShipsEvents() {
       if (index === lengths.length) {
         changeActivePlayer();
         removeCurrentBoard();
-        announce(`${findCurrentPlayer().name} place your ships`);
-        buildShipBoard(findCurrentPlayer());
-        index = 0;
+        if (findCurrentPlayerIndex() === 1) {
+          announce(`${findCurrentPlayer().name} place your ships`);
+          buildShipBoard(findCurrentPlayer());
+          index = 0;
+        }
 
         if (findCurrentPlayerIndex() === 0) {
           announce(`${findCurrentPlayer().name}'s turn`);

@@ -1,5 +1,7 @@
 /* eslint-disable operator-linebreak */
-import buildShipBoard from './addShips';
+
+import { buildShipBoard, getDirection, setDirection } from './addShips';
+
 import { addBoardEvents, removeCurrentBoard } from './gameEvents';
 import {
   changeActivePlayer,
@@ -11,6 +13,22 @@ import buildBoard from './loadboard';
 
 const lengths = [4, 3, 3, 2, 1];
 let index = 0;
+
+function addButtonEvents() {
+  const body = document.querySelector('body');
+
+  body.addEventListener('click', (e) => {
+    if (e.target.id === 'direction-button') {
+      if (e.target.innerText === 'Row') {
+        e.target.innerText = 'Column';
+        setDirection('column');
+      } else {
+        e.target.innerText = 'Row';
+        setDirection('row');
+      }
+    }
+  });
+}
 
 function addShipsEvents() {
   const body = document.querySelector('body');
@@ -25,7 +43,7 @@ function addShipsEvents() {
           parseInt(e.target.dataset.row, 10),
           parseInt(e.target.dataset.col, 10),
         ],
-        'row',
+        getDirection(),
       );
       removeCurrentBoard();
       buildShipBoard(findCurrentPlayer());
@@ -49,6 +67,8 @@ function addShipsEvents() {
       }
     }
   });
+
+  addButtonEvents();
 }
 
 export default addShipsEvents;

@@ -15,7 +15,7 @@ function announce(sentence) {
 
   setTimeout(() => {
     popup.remove();
-  }, 1200);
+  }, 1000);
 }
 
 export default announce;

@@ -4,6 +4,15 @@ function isShipPresent(player, row, col) {
   return player.board.board[row][col] > 0;
 }
 
+let direction = 'row';
+
+function getDirection() {
+  return direction;
+}
+function setDirection(value) {
+  direction = value;
+}
+
 function buildShipBoard(player) {
   const playArea = document.querySelector('#playArea');
 
@@ -25,7 +34,11 @@ function buildShipBoard(player) {
     }
   }
 
-  playArea.append(boardDiv);
+  const directionBtn = document.createElement('button');
+  directionBtn.id = 'direction-button';
+  directionBtn.innerText = direction[0].toUpperCase() + direction.slice(1);
+
+  playArea.append(boardDiv, directionBtn);
 }
 
-export default buildShipBoard;
+export { buildShipBoard, getDirection, setDirection };

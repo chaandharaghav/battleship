@@ -21,11 +21,9 @@ function addBoardEvents() {
       ]);
       changeActivePlayer();
 
-      setTimeout(() => {
-        announce(`${findCurrentPlayer().name}'s turn`);
-        removeCurrentBoard();
-        buildBoard(findCurrentPlayer());
-      }, 800);
+      announce(`${findCurrentPlayer().name}'s turn`);
+      removeCurrentBoard();
+      buildBoard(findCurrentPlayer());
     }
   });
 }

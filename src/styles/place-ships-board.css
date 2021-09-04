@@ -1,3 +1,8 @@
+#playArea {
+  display: flex;
+  flex-direction: column;
+}
+
 .place-ships-board {
   max-width: 300px;
 
@@ -22,4 +27,35 @@
 
 .ship-present {
   background-color: greenyellow;
+}
+
+#direction-button {
+  background-color: black;
+  color: azure;
+
+  margin: 0 auto;
+  margin-top: 3rem;
+  padding: 0.6rem 1rem;
+  border: 1px solid azure;
+}
+
+#direction-button:active {
+  background-color: rgb(41, 41, 41);
+}
+
+@media (min-width: 767px) {
+  .place-ships-board {
+    max-width: 500px;
+  }
+
+  .place-ships-board > * {
+    min-width: 45px;
+    min-height: 45px;
+  }
+}
+
+@media (min-width: 1023px) {
+  #direction-button:hover {
+    background-color: rgb(41, 41, 41);
+  }
 }

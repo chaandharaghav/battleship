@@ -1,4 +1,4 @@
-import buildShipBoard from './addShips';
+import { buildShipBoard } from './addShips';
 import announce from './announce';
 import buildBoard from './loadboard';
 import Player from './player';

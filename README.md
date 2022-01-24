@@ -7,4 +7,4 @@ What I learned
 - how to use babel for transpiling code
 - how to write separate webpack config for development and production
 
-[Live Demo](https://chaandharaghav.github.io/google-homepage/) :point_left:
+[Live Demo](https://chaandharaghav.github.io/battleship/) :point_left:
